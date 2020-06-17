@@ -32,6 +32,12 @@ public class Pr1Bsp1Test {
     }
 
     @Test
+    public void testAvgWeightWithEmptyArray() {
+        double w = Zoo.mittleresGewicht(new double[0]);
+        assertEquals(w, 0.0d, 0.00000000001);
+    }
+
+    @Test
     public void testCosts() {
         double c = Zoo.futterKosten(WEIGHTS);
         assertEquals(c, 1407.3, 0.1);

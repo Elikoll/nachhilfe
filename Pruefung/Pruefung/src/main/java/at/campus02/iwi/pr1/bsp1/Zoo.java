@@ -37,7 +37,15 @@ public class Zoo {
 
     // 16 %
     public static double mittleresGewicht(double[] gewichte) {
-        return 1.0; // Platzhalter
+        if (gewichte.length == 0){
+            return 0d;
+        }
+        double sum = 0d;
+        for (int i = 0; i < gewichte.length; i++){
+            sum += gewichte[i];
+        }
+
+        return sum / gewichte.length;
     }
 
     // 16 %
