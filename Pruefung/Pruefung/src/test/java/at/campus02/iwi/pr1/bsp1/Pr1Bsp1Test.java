@@ -41,6 +41,9 @@ public class Pr1Bsp1Test {
     public void testCosts() {
         double c = Zoo.futterKosten(WEIGHTS);
         assertEquals(c, 1407.3, 0.1);
+
+        double cost2 = Zoo.futterKostenOhneZaehlen(WEIGHTS);
+        assertEquals(cost2, 1407.3, 0.1);
     }
 
     @Test
@@ -53,7 +56,7 @@ public class Pr1Bsp1Test {
         assertEquals(62, Zoo.problemFallIndex(WEIGHTS,0));
         assertEquals(-1, Zoo.problemFallIndex(WEIGHTS,63));
         assertEquals(-1, Zoo.problemFallIndex(WEIGHTS,140));
-        assertEquals(62, Zoo.problemFallIndex(WEIGHTS,46));
+        assertEquals(62, Zoo.problemFallIndex(WEIGHTS,4«6));
     }
 
     @Test

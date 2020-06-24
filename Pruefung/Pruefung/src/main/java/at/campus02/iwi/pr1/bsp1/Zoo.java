@@ -24,15 +24,15 @@ public class Zoo {
 
     // 16 %
     public static int elefanten(double[] gewichte) {
-        int anzahl = 0;
+        int anzahlElefanten = 0;
 
         for (int i = 0; i < gewichte.length; i++){
           if (gewichte[i] >= LIMIT_GROSZTIER){
-               anzahl++;
+               anzahlElefanten++;
           }
         }
 
-        return anzahl;
+        return anzahlElefanten;
     }
 
     // 16 %
@@ -49,13 +49,85 @@ public class Zoo {
     }
 
     // 16 %
-    public static double futterKosten(double[] gewichte) {
-        return 1.0; // Platzhalter
+
+    //futterKosten mit for Schleife, futterKosten2 mit Methoden lösen
+
+    public static double futterKostenUnperformant(double[] gewichte) {
+        int anzahlKleintier = 0;
+        int anzahlGrosztier = 0;
+        int anzahlElefanten = 0;
+
+        for (int i = 0; i < gewichte.length; i++) {
+            if (gewichte[i] < LIMIT_KLEINTIER) {
+                anzahlKleintier++;
+            }
+        }
+
+        for (int i = 0; i < gewichte.length; i++) {
+            if (gewichte[i] < LIMIT_GROSZTIER &&  gewichte[i] >= LIMIT_KLEINTIER) {
+                anzahlGrosztier++;
+            }
+        }
+
+        for (int i = 0; i < gewichte.length; i++) {
+            if (gewichte[i] >= LIMIT_GROSZTIER) {
+                anzahlElefanten++;
+            }
+        }
+        double sumFutter = (anzahlKleintier * KOSTEN_KLEINTIER) + (anzahlGrosztier * KOSTEN_GROSZTIER) + (anzahlElefanten * KOSTEN_ELEFANT);
+
+        return sumFutter ;
     }
 
-    // 16 %
+    public static double futterKosten(double[] gewichte) {
+
+        int AnzahlKleintier = 0;
+        int AnzahlGrosztier = 0;
+        int AnzahlElefanten = 0;
+
+        for (int i = 0; i < gewichte.length; i++) {
+
+            if (gewichte[i] >= LIMIT_GROSZTIER) {
+                AnzahlElefanten++;
+            }
+            else if (gewichte[i] < LIMIT_GROSZTIER && gewichte[i] > LIMIT_KLEINTIER) {
+                AnzahlGrosztier++;
+            }
+            else {
+                AnzahlKleintier++;
+            }
+        }
+
+        return (AnzahlElefanten * KOSTEN_ELEFANT) + (AnzahlGrosztier*KOSTEN_GROSZTIER) + (AnzahlKleintier*KOSTEN_KLEINTIER);
+    }
+
+    public static double futterKostenOhneZaehlen(double[] gewichte) {
+        double kosten = 0d;
+        for (int i = 0; i < gewichte.length; i++) {
+            if (gewichte[i] < LIMIT_KLEINTIER) {
+                kosten += KOSTEN_KLEINTIER;
+            }
+            else if (gewichte[i] < LIMIT_GROSZTIER) {
+                kosten += KOSTEN_GROSZTIER;
+            }
+            else {
+                kosten += KOSTEN_ELEFANT;
+            }
+        }
+
+        return kosten;
+    }
+
+
+
     public static boolean problemFallVorhanden(double[] gewichte) {
-        return true; // Platzhalter
+
+        for (int i = 0; i < gewichte.length; i++) {
+            if (gewichte[i] < 1d ){
+                return true;
+            }
+        }
+        return false;
     }
 
     // 10%
