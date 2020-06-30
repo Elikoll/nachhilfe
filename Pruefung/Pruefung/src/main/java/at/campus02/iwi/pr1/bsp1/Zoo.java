@@ -140,13 +140,15 @@ public class Zoo {
 
     // 10 %
     public static int tiereImContainer(double[] gewichte, int index) {
-        int anzahlImContainer = index;
+        int anzahlImContainer = 0;
         double gewichtImContainer = 0;
-        for (int i = index; i < 5 && gewichte[i] < 500; i++) {
-            if (gewichtImContainer + gewichte[i] < 500) {
+        for (int i = index; gewichte[i] < LIMIT_GROSZTIER && anzahlImContainer < 5; i++) {
+            if (gewichtImContainer + gewichte[i] < LIMIT_CONTAINER) {
                 anzahlImContainer++;
             }
-        }
+                }
+
         return anzahlImContainer;
-    }
+        }
+
 }
