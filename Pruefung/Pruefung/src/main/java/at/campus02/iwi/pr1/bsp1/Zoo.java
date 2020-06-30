@@ -11,6 +11,7 @@ public class Zoo {
     static final double KOSTEN_ELEFANT = 23.9;
 
     static final int LIMIT_CONTAINER = 500;
+    int startIndex = 0;
 
     public static void main(String[] args) {
         final double[] GEWICHTE = ZooData.ANIMAL_WEIGHTS;
@@ -26,10 +27,10 @@ public class Zoo {
     public static int elefanten(double[] gewichte) {
         int anzahlElefanten = 0;
 
-        for (int i = 0; i < gewichte.length; i++){
-          if (gewichte[i] >= LIMIT_GROSZTIER){
-               anzahlElefanten++;
-          }
+        for (int i = 0; i < gewichte.length; i++) {
+            if (gewichte[i] >= LIMIT_GROSZTIER) {
+                anzahlElefanten++;
+            }
         }
 
         return anzahlElefanten;
@@ -37,11 +38,11 @@ public class Zoo {
 
     // 16 %
     public static double mittleresGewicht(double[] gewichte) {
-        if (gewichte.length == 0){
+        if (gewichte.length == 0) {
             return 0d;
         }
         double sum = 0d;
-        for (int i = 0; i < gewichte.length; i++){
+        for (int i = 0; i < gewichte.length; i++) {
             sum += gewichte[i];
         }
 
@@ -64,7 +65,7 @@ public class Zoo {
         }
 
         for (int i = 0; i < gewichte.length; i++) {
-            if (gewichte[i] < LIMIT_GROSZTIER &&  gewichte[i] >= LIMIT_KLEINTIER) {
+            if (gewichte[i] < LIMIT_GROSZTIER && gewichte[i] >= LIMIT_KLEINTIER) {
                 anzahlGrosztier++;
             }
         }
@@ -76,7 +77,7 @@ public class Zoo {
         }
         double sumFutter = (anzahlKleintier * KOSTEN_KLEINTIER) + (anzahlGrosztier * KOSTEN_GROSZTIER) + (anzahlElefanten * KOSTEN_ELEFANT);
 
-        return sumFutter ;
+        return sumFutter;
     }
 
     public static double futterKosten(double[] gewichte) {
@@ -89,16 +90,14 @@ public class Zoo {
 
             if (gewichte[i] >= LIMIT_GROSZTIER) {
                 AnzahlElefanten++;
-            }
-            else if (gewichte[i] < LIMIT_GROSZTIER && gewichte[i] > LIMIT_KLEINTIER) {
+            } else if (gewichte[i] < LIMIT_GROSZTIER && gewichte[i] > LIMIT_KLEINTIER) {
                 AnzahlGrosztier++;
-            }
-            else {
+            } else {
                 AnzahlKleintier++;
             }
         }
 
-        return (AnzahlElefanten * KOSTEN_ELEFANT) + (AnzahlGrosztier*KOSTEN_GROSZTIER) + (AnzahlKleintier*KOSTEN_KLEINTIER);
+        return (AnzahlElefanten * KOSTEN_ELEFANT) + (AnzahlGrosztier * KOSTEN_GROSZTIER) + (AnzahlKleintier * KOSTEN_KLEINTIER);
     }
 
     public static double futterKostenOhneZaehlen(double[] gewichte) {
@@ -106,11 +105,9 @@ public class Zoo {
         for (int i = 0; i < gewichte.length; i++) {
             if (gewichte[i] < LIMIT_KLEINTIER) {
                 kosten += KOSTEN_KLEINTIER;
-            }
-            else if (gewichte[i] < LIMIT_GROSZTIER) {
+            } else if (gewichte[i] < LIMIT_GROSZTIER) {
                 kosten += KOSTEN_GROSZTIER;
-            }
-            else {
+            } else {
                 kosten += KOSTEN_ELEFANT;
             }
         }
@@ -119,11 +116,10 @@ public class Zoo {
     }
 
 
-
     public static boolean problemFallVorhanden(double[] gewichte) {
 
         for (int i = 0; i < gewichte.length; i++) {
-            if (gewichte[i] < 1d ){
+            if (gewichte[i] < 1d) {
                 return true;
             }
         }
@@ -132,12 +128,25 @@ public class Zoo {
 
     // 10%
     public static int problemFallIndex(double[] gewichte, int startIndex) {
-        return 1; // Platzhalter
+        int keinProblemfall = -1;
+        for (int i = startIndex; i < gewichte.length; i++) {
+            if (gewichte[i] <= 1d) {
+                return i;
+            }
+        }
+        return keinProblemfall;
     }
+
 
     // 10 %
     public static int tiereImContainer(double[] gewichte, int index) {
-        return 1; // Platzhalter
+        int anzahlImContainer = index;
+        double gewichtImContainer = 0;
+        for (int i = index; i < 5 && gewichte[i] < 500; i++) {
+            if (gewichtImContainer + gewichte[i] < 500) {
+                anzahlImContainer++;
+            }
+        }
+        return anzahlImContainer;
     }
-
 }

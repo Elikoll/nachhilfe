@@ -56,7 +56,7 @@ public class Pr1Bsp1Test {
         assertEquals(62, Zoo.problemFallIndex(WEIGHTS,0));
         assertEquals(-1, Zoo.problemFallIndex(WEIGHTS,63));
         assertEquals(-1, Zoo.problemFallIndex(WEIGHTS,140));
-        assertEquals(62, Zoo.problemFallIndex(WEIGHTS,4«6));
+        assertEquals(62, Zoo.problemFallIndex(WEIGHTS,46));
     }
 
     @Test
